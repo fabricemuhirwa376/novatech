@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Products from './pages/Products';
@@ -6,6 +6,12 @@ import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import FAQ from './pages/FAQ';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Shipping from './pages/Shipping';
 
 function App() {
   return (
@@ -20,6 +26,12 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/shipping" element={<Shipping />} />
           </Routes>
         </main>
         
@@ -36,25 +48,25 @@ function App() {
               <div>
                 <h4 className="font-semibold mb-3">Quick Links</h4>
                 <ul className="space-y-2 text-sm text-gray-400">
-                  <li><a href="/" className="hover:text-accent-500">Home</a></li>
-                  <li><a href="/products" className="hover:text-accent-500">Products</a></li>
-                  <li><a href="/cart" className="hover:text-accent-500">Cart</a></li>
+                  <li><Link to="/" className="hover:text-accent-500 transition">Home</Link></li>
+                  <li><Link to="/products" className="hover:text-accent-500 transition">Products</Link></li>
+                  <li><Link to="/cart" className="hover:text-accent-500 transition">Cart</Link></li>
+                  <li><Link to="/about" className="hover:text-accent-500 transition">About Us</Link></li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold mb-3">Support</h4>
                 <ul className="space-y-2 text-sm text-gray-400">
-                  <li><a href="#" className="hover:text-accent-500">Help Center</a></li>
-                  <li><a href="#" className="hover:text-accent-500">Contact Us</a></li>
-                  <li><a href="#" className="hover:text-accent-500">FAQ</a></li>
+                  <li><Link to="/contact" className="hover:text-accent-500 transition">Contact Us</Link></li>
+                  <li><Link to="/faq" className="hover:text-accent-500 transition">FAQ</Link></li>
+                  <li><Link to="/shipping" className="hover:text-accent-500 transition">Shipping Info</Link></li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold mb-3">Legal</h4>
                 <ul className="space-y-2 text-sm text-gray-400">
-                  <li><a href="#" className="hover:text-accent-500">Privacy</a></li>
-                  <li><a href="#" className="hover:text-accent-500">Terms</a></li>
-                  <li><a href="#" className="hover:text-accent-500">Shipping</a></li>
+                  <li><Link to="/privacy" className="hover:text-accent-500 transition">Privacy</Link></li>
+                  <li><Link to="/terms" className="hover:text-accent-500 transition">Terms</Link></li>
                 </ul>
               </div>
             </div>

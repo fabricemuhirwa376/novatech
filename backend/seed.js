@@ -20,42 +20,98 @@ const seedDatabase = async () => {
       {
         name: 'Laptop Pro',
         description: 'High-performance laptop for professionals',
-        price: 1299.99,
+        price: 1299000,
         stock: 50,
         category: 'Laptops',
-        imageUrl: 'https://via.placeholder.com/300?text=Laptop+Pro'
+        imageUrl: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&q=80'
       },
       {
-        name: 'USB-C Cable',
-        description: 'Premium 2m USB-C charging cable',
-        price: 19.99,
-        stock: 200,
-        category: 'Accessories',
-        imageUrl: 'https://via.placeholder.com/300?text=USB-C+Cable'
+        name: 'MacBook Air',
+        description: 'Ultra-thin and powerful MacBook Air M2',
+        price: 1599000,
+        stock: 35,
+        category: 'Laptops',
+        imageUrl: 'https://images.unsplash.com/photo-1611186871525-9eeadb3e0e0e?w=400&q=80'
+      },
+      {
+        name: 'Gaming Laptop',
+        description: 'High-performance gaming laptop with RTX 4060',
+        price: 1899000,
+        stock: 25,
+        category: 'Laptops',
+        imageUrl: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&q=80'
+      },
+      {
+        name: 'iPhone 15',
+        description: 'Latest iPhone with A17 Pro chip',
+        price: 899000,
+        stock: 60,
+        category: 'Smartphones',
+        imageUrl: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&q=80'
+      },
+      {
+        name: 'Samsung Galaxy S24',
+        description: 'Premium Android smartphone with AI features',
+        price: 799000,
+        stock: 55,
+        category: 'Smartphones',
+        imageUrl: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&q=80'
       },
       {
         name: 'Wireless Mouse',
         description: 'Ergonomic wireless mouse with precision tracking',
-        price: 49.99,
+        price: 49000,
         stock: 150,
         category: 'Peripherals',
-        imageUrl: 'https://via.placeholder.com/300?text=Wireless+Mouse'
-      },
-      {
-        name: 'Monitor 4K',
-        description: '27-inch 4K Ultra HD monitor',
-        price: 399.99,
-        stock: 30,
-        category: 'Monitors',
-        imageUrl: 'https://via.placeholder.com/300?text=Monitor+4K'
+        imageUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&q=80'
       },
       {
         name: 'Mechanical Keyboard',
-        description: 'RGB Mechanical Gaming Keyboard',
-        price: 129.99,
+        description: 'RGB Mechanical Gaming Keyboard with Cherry MX switches',
+        price: 129000,
         stock: 80,
         category: 'Peripherals',
-        imageUrl: 'https://via.placeholder.com/300?text=Mechanical+Keyboard'
+        imageUrl: 'https://images.unsplash.com/photo-1595044426077-d36d9236d44d?w=400&q=80'
+      },
+      {
+        name: 'Monitor 4K',
+        description: '27-inch 4K Ultra HD monitor with 144Hz refresh rate',
+        price: 399000,
+        stock: 30,
+        category: 'Monitors',
+        imageUrl: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'
+      },
+      {
+        name: 'Sony Headphones',
+        description: 'Premium noise-cancelling wireless headphones',
+        price: 249000,
+        stock: 45,
+        category: 'Audio',
+        imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80'
+      },
+      {
+        name: 'USB-C Hub',
+        description: 'Multi-port USB-C hub with HDMI and SD card reader',
+        price: 79000,
+        stock: 120,
+        category: 'Accessories',
+        imageUrl: 'https://images.unsplash.com/photo-1625842268584-8f3296236761?w=400&q=80'
+      },
+      {
+        name: 'iPad Pro',
+        description: '12.9-inch iPad Pro with M2 chip and Apple Pencil support',
+        price: 699000,
+        stock: 40,
+        category: 'Tablets',
+        imageUrl: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&q=80'
+      },
+      {
+        name: 'Smart Watch',
+        description: 'Advanced fitness tracking and health monitoring smartwatch',
+        price: 199000,
+        stock: 65,
+        category: 'Accessories',
+        imageUrl: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80'
       }
     ]);
 

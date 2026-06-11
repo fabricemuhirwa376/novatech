@@ -26,14 +26,14 @@ const ProductCard = ({ product, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="card overflow-hidden flex flex-col h-full cursor-pointer group"
+      className="bg-white overflow-hidden flex flex-col h-full cursor-pointer group shadow-md hover:shadow-xl transition duration-300 rounded-lg"
     >
-      {/* Product Image */}
-      <div className="w-full h-48 bg-gray-100 flex items-center justify-center overflow-hidden group-hover:bg-gray-200 transition">
+      {/* Product Image - Full Top Half */}
+      <div className="w-full h-56 bg-gray-100 flex items-center justify-center overflow-hidden">
         <img
           src={product.imageUrl}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition transform duration-200"
+          className="w-full h-full object-cover group-hover:scale-110 transition transform duration-300"
           onError={(e) => {
             e.target.src =
               'https://via.placeholder.com/300?text=' + encodeURIComponent(product.name);
@@ -42,44 +42,44 @@ const ProductCard = ({ product, onClick }) => {
       </div>
 
       {/* Product Info */}
-      <div className="p-3 flex flex-col flex-grow">
+      <div className="p-4 flex flex-col flex-grow">
         {/* Category Badge */}
         {product.category && (
-          <div className="mb-2">
-            <span className="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded inline-block">
+          <div className="mb-3">
+            <span className="text-xs text-accent-600 bg-green-50 px-3 py-1 rounded-full inline-block font-medium">
               {product.category}
             </span>
           </div>
         )}
 
         {/* Product Name */}
-        <h3 className="font-semibold text-sm text-gray-900 mb-1 line-clamp-2">
+        <h3 className="font-bold text-base text-gray-900 mb-2 line-clamp-2">
           {product.name}
         </h3>
 
         {/* Product Description */}
         {product.description && (
-          <p className="text-xs text-gray-600 mb-2 line-clamp-1">
+          <p className="text-xs text-gray-600 mb-3 line-clamp-2">
             {product.description}
           </p>
         )}
 
         {/* Price and Stock */}
-        <div className="mt-auto pt-2">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xl font-bold text-accent-600">
+        <div className="mt-auto pt-3 border-t border-gray-200">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-2xl font-bold text-accent-600">
               ${product.price.toFixed(2)}
             </span>
-            <span className="text-xs text-gray-600">
-              {product.stock > 0 ? `${product.stock} left` : 'Out of stock'}
+            <span className="text-xs text-gray-500 font-medium">
+              {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
             </span>
           </div>
 
-          {/* Add to Cart Button */}
+          {/* Add to Cart Button - Full Width Green */}
           <button
             onClick={handleAddToCart}
             disabled={product.stock === 0 || loading}
-            className="w-full btn-primary flex items-center justify-center gap-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-accent-600 hover:bg-accent-700 text-white font-bold py-2 rounded-lg flex items-center justify-center gap-2 text-sm transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-accent-600"
           >
             <CartIcon size={16} />
             {loading ? 'Adding...' : 'Add to Cart'}

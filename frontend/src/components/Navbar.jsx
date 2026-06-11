@@ -1,127 +1,78 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ShoppingCart, Search, Phone } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { ShoppingCart, Menu, X, Search } from 'lucide-react';
 import { useState } from 'react';
 
 const Navbar = () => {
-  const { cartItemsCount } = useCart();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const { cartItems } = useCart();
+  const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+  const itemCount = cartItems.reduce((sum, i) => sum + i.quantity, 0);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchTerm.trim()) {
-      window.location.href = `/products?search=${encodeURIComponent(searchTerm)}`;
-    }
+    if (search.trim()) navigate(`/products?search=${search}`);
   };
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div className="container py-3">
-        {/* Desktop Navigation */}
-        <div className="flex items-center justify-between gap-6">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-10 h-10 bg-accent-600 rounded flex items-center justify-center">
-              <span className="text-white font-black text-sm">NT</span>
-            </div>
-            <span className="text-xl font-bold text-accent-600 hidden sm:inline">NovaTech RW</span>
-          </Link>
+    <header className="w-full sticky top-0 z-50">
+      {/* Top bar */}
+      <div className="bg-gray-900 text-gray-300 text-sm py-2 px-4 flex justify-between">
+        <span>📦 Free delivery in Kigali on orders above 50,000 RWF</span>
+        <span><Phone size={14} className="inline mr-1" />+250 788 000 000</span>
+      </div>
 
-          {/* Search Bar - Center */}
-          <form onSubmit={handleSearch} className="flex-grow max-w-md hidden md:flex">
-            <div className="relative w-full">
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="input-field pr-10 text-sm"
-              />
-              <button
-                type="submit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
-                <Search size={18} />
-              </button>
-            </div>
-          </form>
+      {/* Middle bar */}
+      <div className="bg-white shadow px-6 py-3 flex items-center justify-between gap-4">
+        <Link to="/" className="flex items-center gap-2 shrink-0">
+          <div className="bg-green-600 text-white font-bold px-2 py-1 rounded text-sm">NT</div>
+          <span className="font-bold text-xl text-gray-900">NovaTech <span className="text-green-600">RW</span></span>
+        </Link>
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-4">
-            {/* Desktop Navigation Links */}
-            <div className="hidden md:flex gap-4 text-sm">
-              <Link to="/" className="text-gray-700 hover:text-accent-600 transition">
-                Home
-              </Link>
-              <Link to="/products" className="text-gray-700 hover:text-accent-600 transition">
-                Products
-              </Link>
-            </div>
-
-            {/* Cart Icon */}
-            <Link
-              to="/cart"
-              className="relative text-gray-700 hover:text-accent-600 transition flex items-center"
-            >
-              <ShoppingCart size={24} />
-              {cartItemsCount > 0 && (
-                <span className="absolute -top-2 -right-2 badge w-5 h-5 flex items-center justify-center text-xs">
-                  {cartItemsCount}
-                </span>
-              )}
-            </Link>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden text-gray-700 hover:text-accent-600"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Search Bar */}
-        <form onSubmit={handleSearch} className="md:hidden mt-3">
-          <div className="relative w-full">
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="input-field pr-10 text-sm"
-            />
-            <button
-              type="submit"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-            >
-              <Search size={18} />
-            </button>
-          </div>
+        <form onSubmit={handleSearch} className="flex-1 max-w-2xl flex">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search products..."
+            className="w-full border-2 border-green-600 rounded-l-lg px-4 py-2 outline-none"
+          />
+          <button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-4 rounded-r-lg">
+            <Search size={20} />
+          </button>
         </form>
 
-        {/* Mobile Navigation Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-3 pb-3 space-y-2 border-t border-gray-200 pt-3">
-            <Link
-              to="/"
-              className="block py-2 text-gray-700 hover:text-accent-600 transition"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              to="/products"
-              className="block py-2 text-gray-700 hover:text-accent-600 transition"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Products
-            </Link>
+        <Link to="/cart" className="flex items-center gap-2 relative">
+          <div className="relative">
+            <ShoppingCart size={28} className="text-gray-700" />
+            {itemCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                {itemCount}
+              </span>
+            )}
           </div>
-        )}
+          <span className="text-gray-700 font-medium">Cart</span>
+        </Link>
       </div>
-    </nav>
+
+      {/* Bottom green nav bar */}
+      <div className="bg-green-600 text-white px-6 py-2 flex gap-6 text-sm font-medium overflow-x-auto">
+        {[
+          { label: 'Home', to: '/' },
+          { label: 'All Products', to: '/products' },
+          { label: 'Smartphones', to: '/products?category=Smartphones' },
+          { label: 'Laptops', to: '/products?category=Laptops' },
+          { label: 'Audio', to: '/products?category=Audio' },
+          { label: 'Accessories', to: '/products?category=Accessories' },
+          { label: 'About', to: '/about' },
+          { label: 'Contact', to: '/contact' },
+        ].map((item) => (
+          <Link key={item.to} to={item.to} className="hover:text-green-200 whitespace-nowrap">
+            {item.label}
+          </Link>
+        ))}
+      </div>
+    </header>
   );
 };
 
